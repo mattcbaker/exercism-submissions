@@ -1,10 +1,10 @@
 ﻿module RNATranscription
 let toRna strand = 
-    let map strand = 
-        match strand with
+    let dnaToRna = 
+        function
         | 'G' -> 'C'
         | 'T' -> 'A'
         | 'A' -> 'U'        
         | _ -> 'G'
     
-    String.map map strand
+    String.map dnaToRna strand
