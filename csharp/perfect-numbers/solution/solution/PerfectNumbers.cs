@@ -17,7 +17,7 @@ public class PerfectNumbers
         return MapNumberType(number, sumOfFactors);
     }
 
-    private static NumberType MapNumberType(int number, int sum)
+    static NumberType MapNumberType(int number, int sum)
     {
         if (sum < number) return NumberType.Deficient;
         if (sum == number) return NumberType.Perfect;
