@@ -15,7 +15,7 @@ public class Clock
 
     public Clock Add(int minutes) => new Clock(this.hours, this.minutes + minutes);
 
-    public object Subtract(int minutes) => new Clock(this.hours, this.minutes - minutes);
+    public Clock Subtract(int minutes) => new Clock(this.hours, this.minutes - minutes);
 
     public override string ToString()
     {
