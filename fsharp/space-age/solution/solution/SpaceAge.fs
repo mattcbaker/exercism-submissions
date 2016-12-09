@@ -1,21 +1,10 @@
 ﻿module SpaceAge
 
-type Planet = 
-    | Earth
-    | Mercury
-    | Venus
-    | Mars
-    | Jupiter
-    | Saturn
-    | Uranus
-    | Neptune
+type Planet = | Earth | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune
 
-
-let secondsInYear = 24.00m * 60.00m * 60.00m * 365.25m
+let secondsInYear = 31557600m
 let earthYears seconds = 
     seconds / secondsInYear
-let roundToSecondDecimal (decimal: decimal) = 
-    System.Math.Round(decimal, 2)
 
 let spaceAge planet seconds = 
     match planet with
@@ -27,4 +16,4 @@ let spaceAge planet seconds =
         | Uranus -> (earthYears seconds) / 84.016846m
         | Neptune -> (earthYears seconds) / 164.79132m
         | _ -> earthYears seconds
-    |> roundToSecondDecimal
+    |> fun x -> System.Math.Round(x, 2)
