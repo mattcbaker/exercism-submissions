@@ -13,17 +13,9 @@ public class Clock
         this.minutes = minutes;
     }
 
-    public Clock Add(int minutes)
-    {
-        this.minutes += minutes;
-        return this;
-    }
+    public Clock Add(int minutes) => new Clock(this.hours, this.minutes + minutes);
 
-    public object Subtract(int minutes)
-    {
-        this.minutes -= minutes;
-        return this;
-    }
+    public object Subtract(int minutes) => new Clock(this.hours, this.minutes - minutes);
 
     public override string ToString()
     {
@@ -49,11 +41,8 @@ public class Clock
             this.hours += 24;
         }
 
-        return $"{hours.ToString().PadLeft(2, '0')}:" + minutes.ToString().PadLeft(2, '0');
+        return $"{hours:d2}:{minutes:d2}";
     }
 
-    public override bool Equals(object obj)
-    {
-        return this.ToString() == obj.ToString();
-    }
+    public override bool Equals(object obj) => this.ToString() == obj?.ToString();
 }
