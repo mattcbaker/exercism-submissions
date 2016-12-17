@@ -7,8 +7,6 @@ let openAccount account = account
 let getBalance account = account
 
 let updateBalance (amount: float) account = 
-    match account with
-    | Some balance -> Some (balance + amount)
-    | None -> None
+    account |> Option.map ((+) amount)
 
 let closeAccount account = None
