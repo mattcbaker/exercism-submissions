@@ -51,7 +51,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Grain.fs" />
+    <Compile Include="Grains.fs" />
     <Compile Include="GrainsTest.fs" />
     <None Include="README.md" />
     <Content Include="packages.config" />
