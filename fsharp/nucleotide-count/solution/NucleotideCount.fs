@@ -4,7 +4,9 @@
         | 'A' | 'T' | 'C' | 'G' ->
             Seq.fold (fun count current -> if current = nucleotide then count+1 else count) 0 strand
         | _ -> 
-            raise (System.Exception("invalid nucleotide"))
+            failwith (sprintf "%c is an invalid nucleotide" nucleotide)
 
     let nucleotideCounts strand = 
-        List.map (fun (nucleotide, amount) -> (nucleotide,(count nucleotide strand))) [ ( 'A', 0 ); ( 'T', 0 ); ( 'C', 0 ); ( 'G', 0 ) ] |> Map.ofSeq
+        [ 'A';'T';'C';'G' ]
+        |> List.map (fun nucleotide -> (nucleotide,(count nucleotide strand)))
+        |> Map.ofSeq
