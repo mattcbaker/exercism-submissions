@@ -2,11 +2,13 @@
 
 public class ErrorHandling
 {
-    public static void HandleErrorByThrowingException() { throw new Exception();}
+    public static void HandleErrorByThrowingException() { throw new Exception(); }
     public static void DisposableResourcesAreDisposedWhenExceptionIsThrown(ErrorHandlingTest.DisposableResource disposableResource)
     {
-        disposableResource.Dispose();
-        throw new Exception();
+        using (disposableResource)
+        {
+            throw new Exception();
+        }
     }
 
     public static int? HandleErrorByReturningNullableType(string value)
