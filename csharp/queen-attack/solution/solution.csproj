@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueenAttackTest.cs" />
+    <Compile Include="Queens.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
