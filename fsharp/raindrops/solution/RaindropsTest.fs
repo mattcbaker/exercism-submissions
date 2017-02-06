@@ -28,8 +28,8 @@ let ``Numbers containing 7 as a prime factor give plong`` (number) =
     Assert.That(convert number, Is.EqualTo("Plong"))
 
 [<TestCase(15, ExpectedResult = "PlingPlang")>]
-[<TestCase(21, ExpectedResult = "PlingPlong", Ignore = "Remove to run test case")>]
-[<TestCase(35, ExpectedResult = "PlangPlong", Ignore = "Remove to run test case")>]
-[<TestCase(105, ExpectedResult = "PlingPlangPlong", Ignore = "Remove to run test case")>]    
+[<TestCase(21, ExpectedResult = "PlingPlong")>]
+[<TestCase(35, ExpectedResult = "PlangPlong")>]
+[<TestCase(105, ExpectedResult = "PlingPlangPlong")>]    
 let ``Numbers containing multiple prime factors give all results concatenated`` (number) =
     convert number
