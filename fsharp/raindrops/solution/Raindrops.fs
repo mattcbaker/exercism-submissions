@@ -1,11 +1,14 @@
 ﻿module Raindrops
     let convert number = 
-        let mutable result = ""
+        let getSound state factor = 
+            if number % (fst factor) = 0 then state + (snd factor) else state
 
-        if number % 3 = 0 then result <- result + "Pling"
-        if number % 5 = 0 then result <- result + "Plang"
-        if number % 7 = 0 then result <- result + "Plong"
+        let matcher = 
+            function 
+            | "" -> string number
+            | sounds -> sounds
 
-        match String.length result with
-        | 0 -> string number
-        | _ -> result
+        [(3, "Pling"); (5, "Plang"); (7, "Plong")]
+        |> List.fold getSound ""
+        |> matcher
+        
