@@ -10,7 +10,7 @@
 
             if (haystack[middle] == needle) return middle;
 
-            if (middle <= 0 || middle >= haystack.Length - 1) return -1;
+            if (middle == 0 || middle == haystack.Length - 1) return -1;
 
             if (haystack[middle] > needle) return DivideAndConquer(minimum, --middle);
 
