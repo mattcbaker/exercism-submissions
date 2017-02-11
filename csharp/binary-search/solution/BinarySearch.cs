@@ -1,27 +1,22 @@
-﻿using System;
-using System.Linq;
-
-public class BinarySearch
+﻿public class BinarySearch
 {
     public static int Search(int[] haystack, int needle)
     {
-        int DivideAndConquer(int[] currentHaystack, int offset)
+        if (haystack.Length == 0) return -1;
+
+        int DivideAndConquer(int minimum, int maximum)
         {
-            if (currentHaystack.Length == 0) return -1;
-            if (currentHaystack.Length == 1 && currentHaystack[0] != needle) return -1;
+            var middle = (minimum + maximum) / 2;
 
-            var middle = (int)Math.Floor(currentHaystack.Length / 2.0);
+            if (haystack[middle] == needle) return middle;
 
-            if (currentHaystack[middle] == needle) return middle + offset;
+            if (middle <= 0 || middle >= haystack.Length - 1) return -1;
 
-            if (currentHaystack[middle] > needle)
-            {
-                return DivideAndConquer(currentHaystack.Take(middle).ToArray(), offset);
-            }
+            if (haystack[middle] > needle) return DivideAndConquer(minimum, --middle);
 
-            return DivideAndConquer(currentHaystack.Skip(middle).ToArray(), offset + middle);
+            return DivideAndConquer(++middle, maximum);
         }
 
-        return DivideAndConquer(haystack, 0);
+        return DivideAndConquer(0, haystack.Length - 1);
     }
 }
