@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-
-public struct Coordinate
+﻿public struct Coordinate
 {
     public readonly int X, Y;
 
@@ -19,8 +15,6 @@ public class RobotSimulator
 {
     public Coordinate Coordinate { get; private set; }
     public Bearing Bearing { get; private set; }
-
-    readonly Dictionary<char, Action> DirectionsMap = new Dictionary<char, Action>();
 
     public RobotSimulator(Bearing bearing, Coordinate coordinate)
     {
