@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 
 public struct Coordinate
 {
-    public readonly int X;
-    public readonly int Y;
+    public readonly int X, Y;
 
     public Coordinate(int x, int y)
     {
@@ -14,20 +13,12 @@ public struct Coordinate
     }
 }
 
-public enum Bearing { West, North, East, South }
+public enum Bearing { North, East, South, West }
 
 public class RobotSimulator
 {
     public Coordinate Coordinate { get; private set; }
     public Bearing Bearing { get; private set; }
-
-    readonly Dictionary<Bearing, int> BearingMap = new Dictionary<Bearing, int>
-    {
-        { Bearing.North, 1},
-        { Bearing.East, 2},
-        { Bearing.South, 3},
-        { Bearing.West, 4},
-    };
 
     readonly Dictionary<char, Action> DirectionsMap = new Dictionary<char, Action>();
 
@@ -35,35 +26,27 @@ public class RobotSimulator
     {
         Bearing = bearing;
         Coordinate = coordinate;
-        BuildDirectionsMap();
     }
 
-    void BuildDirectionsMap()
-    {
-        DirectionsMap.Add('R', TurnRight);
-        DirectionsMap.Add('L', TurnLeft);
-        DirectionsMap.Add('A', Advance);
-    }
+    public void TurnRight() => Bearing = Bearing == Bearing.West ? Bearing.North : Bearing + 1;
 
-    public void TurnRight()
-    {
-        var direction = BearingMap[Bearing];
-        direction = direction + 1 == 5 ? 1 : direction + 1;
-        Bearing = BearingMap.First(item => item.Value == direction).Key;
-    }
-
-    public void TurnLeft()
-    {
-        var direction = BearingMap[Bearing];
-        direction = direction - 1 == 0 ? 4 : direction - 1;
-        Bearing = BearingMap.First(item => item.Value == direction).Key;
-    }
+    public void TurnLeft() => Bearing = Bearing == Bearing.North ? Bearing.West : Bearing - 1;
 
     public void Simulate(string directions)
     {
         foreach (var direction in directions)
         {
-            DirectionsMap[direction]();
+            switch (direction)
+            {
+                case 'R':
+                    TurnRight();
+                    break;
+                case 'L': TurnLeft();
+                    break;
+                default:
+                    Advance();
+                    break;
+            }
         }
     }
 
