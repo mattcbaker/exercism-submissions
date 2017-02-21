@@ -10,7 +10,8 @@ let grade number school =
   |> List.sort
 
 let roster school = 
-  List.map (fun student -> snd student) school 
+  school
+  |> List.map (fun student -> snd student) 
   |> List.distinct
   |> List.map (fun x -> x, (grade x school))
   |> List.sort
