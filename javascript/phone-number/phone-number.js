@@ -13,7 +13,7 @@ PhoneNumber.prototype.areaCode = function() {
 }
 
 PhoneNumber.prototype.toString = function() {
-    return `(${this.formatted.slice(0,3)}) ${this.formatted.slice(3,6)}-${this.formatted.slice(6)}`
+    return `(${this.areaCode()}) ${this.formatted.slice(3,6)}-${this.formatted.slice(6)}`
 }
 
 var formatRaw = (raw) => raw.replace(/\D/g, '')
