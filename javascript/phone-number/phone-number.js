@@ -1,15 +1,25 @@
 var PhoneNumber = function(raw){
-    this.raw = raw
+    this.formatted = formatRaw(raw)
 }
 
 PhoneNumber.prototype.number = function() {
-    return this.raw[0] === '2' || this.raw.length === 9 
-        ? '0000000000' 
-        : '1234567890'
+    return isValidPhoneNumber(this.formatted)
+        ? (this.formatted.length > 10 ? this.formatted.slice(1) : this.formatted)
+        : '0000000000'
 }
 
-PhoneNumber.prototype.areaCode = () => '123'
+PhoneNumber.prototype.areaCode = function() { 
+    return this.formatted.slice(0,3) 
+}
 
-PhoneNumber.prototype.toString = () => '(123) 456-7890'
+PhoneNumber.prototype.toString = function() {
+    return `(${this.formatted.slice(0,3)}) ${this.formatted.slice(3,6)}-${this.formatted.slice(6)}`
+}
+
+var formatRaw = (raw) => raw.replace(/\D/g, '')
+
+var isValidPhoneNumber = (number) => 
+    number.length === 10 
+    || (number.length === 11 && number[0] === '1')
 
 module.exports = PhoneNumber;
