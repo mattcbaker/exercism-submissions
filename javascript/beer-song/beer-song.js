@@ -10,7 +10,7 @@ BeerSong.prototype.sing = function(start, end) {
     return new Array(start - (end - 1))
         .fill()
         .map((_, index) => {
-            return new BeerSong().verse(start - index)
+            return this.verse(start - index)
         }).join('\n')
 }
 
