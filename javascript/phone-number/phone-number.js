@@ -4,7 +4,7 @@ var PhoneNumber = function(raw){
 
 PhoneNumber.prototype.number = function() {
     return isValidPhoneNumber(this.formatted)
-        ? (this.formatted.length > 10 ? this.formatted.slice(1) : this.formatted)
+        ? this.formatted.slice(-10)
         : '0000000000'
 }
 
