@@ -10,6 +10,7 @@ public static class SecretHandshake
         {
             "wink", "double blink", "close your eyes", "jump"
         };
+
         var bitsThatAreSet = Enumerable.Range(0, actions.Length)
             .Where(x => (commandValue & (1 << x)) != 0);
 
