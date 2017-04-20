@@ -15,11 +15,10 @@ public static class SecretHandshake
             .Where(x => (commandValue & (1 << x)) != 0);
 
         var steps = bitsThatAreSet
-            .Select(bit => actions[bit])
-            .ToArray();
+            .Select(bit => actions[bit]);
 
         return (commandValue & (1 << actions.Length)) != 0
             ? steps.Reverse().ToArray()
-            : steps;
+            : steps.ToArray();
     }
 }
