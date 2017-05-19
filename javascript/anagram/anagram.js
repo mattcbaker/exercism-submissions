@@ -1,10 +1,11 @@
-var Anagram = function(root){
-    this.root = root.toLowerCase()
+var Anagram = function(word){
+    this.word = word.toLowerCase()
 }
 
 Anagram.prototype.matches = function(wordList){
-    return wordList.filter((word) => {
-        return JSON.stringify(groupLetter(word.toLowerCase())) === JSON.stringify(groupLetter(this.root)) && this.root !== word.toLowerCase()
+    var forFilter = Array.isArray(wordList) ? wordList : Object.keys(arguments).map(key => arguments[key]);
+    return forFilter.filter((word) => {
+        return JSON.stringify(groupLetter(word.toLowerCase())) === JSON.stringify(groupLetter(this.word)) && this.word !== word.toLowerCase()
     })
 }
 
