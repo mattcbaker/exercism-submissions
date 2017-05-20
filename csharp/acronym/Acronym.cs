@@ -1,34 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 public static class Acronym
 {
     public static string Abbreviate(string phrase)
     {
-        phrase = phrase.Replace('-', ' ');
+        string SelectAcronym(int index) {
+            if (index == 0) return phrase[index].ToString();
 
-        var acronym = phrase.Split(' ').Select(SelectAcronymParts);
+            var previousCharacter = phrase[index - 1];
 
-        return string.Join("", acronym).ToUpper();
-    }
+            if (previousCharacter == ' ') return phrase[index].ToString();
 
-    static string SelectAcronymParts(string word){
-        var parts = string.Empty;
+            if (char.IsUpper(phrase[index]) && char.IsLower(previousCharacter)) return phrase[index].ToString();
 
-        word.Aggregate(string.Empty, (acronym, currentLetter) => {
-            if(acronym.Length == 0){
-                parts += currentLetter.ToString().ToUpper();
-            }
-            else if(acronym.EndsWith(" ")){
-                parts += currentLetter.ToString().ToUpper();
-            }
-            else if(char.IsLower(acronym.Last()) && char.IsUpper(currentLetter)){
-                parts += currentLetter.ToString().ToUpper();
-            }
+            if (previousCharacter == '-') return phrase[index].ToString();
 
-            return currentLetter.ToString();
-        });
+            return string.Empty;
+        }
 
-        return parts;
+        return string.Join(
+            "",
+            Enumerable.Range(0, phrase.Length-1).Select(SelectAcronym)
+        ).ToUpper();
     }
 }
+
