@@ -13,7 +13,7 @@ public static class LargestSeriesProduct
 
         return GetSeries(digits, span).Max((all) =>
         {
-            return all.Aggregate((long)1, (state, value) =>
+            return all.Aggregate(1L, (state, value) =>
             {
                 return state * Convert.ToInt64(value.ToString());
             });
