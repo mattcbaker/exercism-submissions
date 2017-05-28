@@ -6,18 +6,13 @@ public static class LargestSeriesProduct
 {
     public static long GetLargestProduct(string digits, int span)
     {
-        if(span < 0) throw new ArgumentException();
-        if(span > digits.Length) throw new ArgumentException();
-        if(digits.Any(c => !char.IsDigit(c))) throw new ArgumentException();
-        if(digits == string.Empty) return 1;
+        if (span < 0 || span > digits.Length) throw new ArgumentException();
+        if (digits.Any(c => !char.IsDigit(c))) throw new ArgumentException();
+        if (digits == string.Empty) return 1;
 
-        return GetSeries(digits, span).Max((all) =>
-        {
-            return all.Aggregate(1L, (state, value) =>
-            {
-                return state * Convert.ToInt64(value.ToString());
-            });
-        });
+        return GetSeries(digits, span)
+            .Max((all) => 
+                all.Aggregate(1L, (state, value) => state * Convert.ToInt64(value.ToString())));
     }
 
     static IEnumerable<string> GetSeries(string digits, int span)
