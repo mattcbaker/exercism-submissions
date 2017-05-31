@@ -8,7 +8,6 @@ public static class LargestSeriesProduct
     {
         if (span < 0 || span > digits.Length) throw new ArgumentException();
         if (digits.Any(c => !char.IsDigit(c))) throw new ArgumentException();
-        if (digits == string.Empty) return 1;
 
         return Enumerable.Range(0, digits.Length - span + 1)
             .Select(AllSeries)
