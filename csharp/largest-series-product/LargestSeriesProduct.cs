@@ -10,31 +10,15 @@ public static class LargestSeriesProduct
         if (digits.Any(c => !char.IsDigit(c))) throw new ArgumentException();
         if (digits == string.Empty) return 1;
 
-        return GetSeries(digits, span)
-            .Max((all) => 
-                all.Aggregate(1L, (state, value) => state * Convert.ToInt64(value.ToString())));
+        return Enumerable.Range(0, digits.Length - span + 1)
+            .Select(AllSeries)
+            .Select(ProductOfEachSeries)
+            .Max();
+
+        IEnumerable<char> AllSeries(int index) => digits.Skip(index).Take(span);
     }
 
-    static IEnumerable<string> GetSeries(string digits, int span)
-    {
-        var pieces = new List<string>();
+    static long ProductOfEachSeries(IEnumerable<char> series) => series.Aggregate(1L, (state, value) => state * AsLong(value));
 
-        for (int i = 0; i < digits.Length; i++)
-        {
-            if (HasEnoughForSeries(digits, span, i))
-            {
-                pieces.Add(
-                    string.Join("", digits.Skip(i).Take(span))
-                    );
-            }
-        }
-
-        return pieces;
-    }
-
-    private static bool HasEnoughForSeries(string digits, int span, int index)
-    {
-        return digits.Length - index >= span;
-    }
-
+    static long AsLong(char value) => (long)char.GetNumericValue(value);
 }
