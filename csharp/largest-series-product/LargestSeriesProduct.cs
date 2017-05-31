@@ -17,7 +17,8 @@ public static class LargestSeriesProduct
         IEnumerable<char> AllSeries(int index) => digits.Skip(index).Take(span);
     }
 
-    static long ProductOfEachSeries(IEnumerable<char> series) => series.Aggregate(1L, (state, value) => state * AsLong(value));
+    static long ProductOfEachSeries(IEnumerable<char> series) => 
+        series.Aggregate(1L, (state, value) => state * AsLong(value));
 
     static long AsLong(char value) => (long)char.GetNumericValue(value);
 }
