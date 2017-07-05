@@ -68,8 +68,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_find_the_largest_product_of_3_with_numbers_in_order()
 
     {
@@ -88,8 +87,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_find_the_largest_product_of_3()
 
     {
@@ -108,8 +106,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_find_the_largest_product_of_5_with_numbers_in_order()
 
     {
@@ -128,8 +125,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_get_the_largest_product_of_a_big_number()
 
     {
@@ -148,8 +144,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_get_the_largest_product_of_a_big_number_II()
 
     {
@@ -168,8 +163,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Can_get_the_largest_product_of_a_big_number_III()
 
     {
@@ -188,8 +182,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Reports_zero_if_the_only_digits_are_zero()
 
     {
@@ -206,10 +199,7 @@ public class LargestSeriesProductTest
 
     }
 
-
-
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Reports_zero_if_all_spans_include_zero()
 
     {
@@ -228,8 +218,7 @@ public class LargestSeriesProductTest
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Reports_1_for_empty_string_and_empty_product_0_span()
 
     {
@@ -246,12 +235,8 @@ public class LargestSeriesProductTest
 
     }
 
-
-
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Reports_1_for_nonempty_string_and_empty_product_0_span()
-
     {
 
         const string digits = "123";
@@ -263,13 +248,11 @@ public class LargestSeriesProductTest
 
 
         Assert.Equal(expected, LargestSeriesProduct.GetLargestProduct(digits, span));
-
     }
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Rejects_span_longer_than_string_length()
 
     {
@@ -281,15 +264,12 @@ public class LargestSeriesProductTest
 
 
         Assert.Throws<ArgumentException>(() => LargestSeriesProduct.GetLargestProduct(digits, span));
-
     }
 
 
 
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Rejects_empty_string_and_nonzero_span()
-
     {
 
         const string digits = "";
@@ -302,12 +282,8 @@ public class LargestSeriesProductTest
 
     }
 
-
-
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Rejects_invalid_character_in_digits()
-
     {
 
         const string digits = "1234a5";
@@ -320,12 +296,8 @@ public class LargestSeriesProductTest
 
     }
 
-
-
-    [Fact(Skip = "Remove to run test")]
-
+    [Fact]
     public void Rejects_negative_span()
-
     {
 
         const string digits = "12345";
