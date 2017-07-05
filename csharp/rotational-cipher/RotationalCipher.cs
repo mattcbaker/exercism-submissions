@@ -4,21 +4,21 @@ public static class RotationalCipher
 {
   public static string Rotate(string text, int shiftKey)
   {
-    var key = Enumerable.Range(0, 26).Select(x => x + 97).ToArray();
 
-    var chars = text.Select(rotate);
+    char transform(char c, char offset) => (char)((c - offset + shiftKey) % 26 + offset);
 
-    return string.Join("", chars);
-
-    char rotate(char x)
+    char map(char c)
     {
-      if(!char.IsLetter(x)) return x;
+      if (char.IsLetter(c))
+      {
+        return char.IsLower(c)
+          ? transform(c, 'a')
+          : transform(c, 'A');
+      }
 
-      var index = (((x % 32) - 1) + shiftKey) % 26;
-
-      var rotated = (char)key[index];
-
-      return char.IsUpper(x) ? char.ToUpper(rotated) : rotated;
+      return c;
     }
+
+    return new string(text.Select(map).ToArray());
   }
 }
