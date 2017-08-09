@@ -17,15 +17,15 @@ public class SaddlePoints
       .Select(x => x);
 
   bool IsSaddlePoint(int row, int column) =>
-    GreaterThanOrEqualToEveryItemInRow(matrix[row, column], row)
-    && LessThanOrEqualToEveryItemInColumn(matrix[row, column], column);
+    GreaterThanOrEqualToEveryValueInRow(matrix[row, column], row)
+    && LessThanOrEqualToEveryValueInColumn(matrix[row, column], column);
 
-  bool GreaterThanOrEqualToEveryItemInRow(int value, int row) =>
+  bool GreaterThanOrEqualToEveryValueInRow(int value, int row) =>
     Enumerable
       .Range(0, matrix.GetLength(1))
       .All(x => value >= matrix[row, x]);
 
-  bool LessThanOrEqualToEveryItemInColumn(int value, int column) =>
+  bool LessThanOrEqualToEveryValueInColumn(int value, int column) =>
     Enumerable
       .Range(0, matrix.GetLength(0))
       .All(x => value <= matrix[x, column]);
