@@ -11,48 +11,29 @@ public class SaddlePoints
     this.matrix = matrix;
   }
 
-  public IEnumerable<Tuple<int, int>> Calculate()
-  {
-    var saddlePoints = new List<Tuple<int, int>>();
+  public IEnumerable<Tuple<int, int>> Calculate() =>
+    EnumerateMatrix()
+      .Where(x => IsSaddlePoint(x.Item1, x.Item2))
+      .Select(x => x);
 
+  bool IsSaddlePoint(int row, int column) =>
+    GreaterThanOrEqualToEveryItemInRow(matrix[row, column], row)
+    && LessThanOrEqualToEveryItemInColumn(matrix[row, column], column);
+
+  bool GreaterThanOrEqualToEveryItemInRow(int value, int row) =>
+    Enumerable
+      .Range(0, matrix.GetLength(1))
+      .All(x => value >= matrix[row, x]);
+
+  bool LessThanOrEqualToEveryItemInColumn(int value, int column) =>
+    Enumerable
+      .Range(0, matrix.GetLength(0))
+      .All(x => value <= matrix[x, column]);
+
+  IEnumerable<Tuple<int, int>> EnumerateMatrix()
+  {
     for (int i = 0; i < matrix.GetLength(0); i++)
-    {
       for (int j = 0; j < matrix.GetLength(1); j++)
-      {
-        if (IsSaddlePoint(i, j))
-        {
-          saddlePoints.Add(Tuple.Create(i, j));
-        }
-      }
-    }
-
-    return saddlePoints.ToArray();
-  }
-
-  bool IsSaddlePoint(int row, int column)
-  {
-    return
-      GreaterThanOrEqualToEveryItemInRow(matrix[row, column], row)
-      && LessThanOrEqualToEveryItemInColumn(matrix[row, column], column);
-  }
-
-  bool GreaterThanOrEqualToEveryItemInRow(int value, int row)
-  {
-    for (int i = 0; i < matrix.GetLength(1); i++)
-    {
-      if (value < matrix[row, i]) return false;
-    }
-
-    return true;
-  }
-
-  bool LessThanOrEqualToEveryItemInColumn(int value, int column)
-  {
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-      if (value > matrix[i, column]) return false;
-    }
-
-    return true;
+        yield return Tuple.Create(i, j);
   }
 }
