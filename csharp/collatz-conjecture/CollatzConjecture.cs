@@ -11,7 +11,7 @@ public static class CollatzConjecture
 
     static void ThrowIfInvalidNumber(int number)
     {
-        if (number <= 0) throw new ArgumentException();
+        if (number < 1) throw new ArgumentException();
     }
 
     static int GetSteps(int number, int stepCount)
