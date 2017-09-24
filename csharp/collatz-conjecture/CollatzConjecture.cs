@@ -4,20 +4,25 @@ public static class CollatzConjecture
 {
     public static int Steps(int number)
     {
-        if(number <= 0) throw new ArgumentException();
+        ThrowIfInvalidNumber(number);
 
-        return RecursionHelper(number, 0);
+        return GetSteps(number, 0);
     }
 
-    static int RecursionHelper(int number, int total)
+    static void ThrowIfInvalidNumber(int number)
     {
-        if (number == 1) return total;
+        if (number <= 0) throw new ArgumentException();
+    }
+
+    static int GetSteps(int number, int stepCount)
+    {
+        if (number == 1) return stepCount;
 
         if (number % 2 == 0)
         {
-            return RecursionHelper(number / 2, ++total);
+            return GetSteps(number / 2, ++stepCount);
         }
 
-        return RecursionHelper(number*3+1, ++total);
+        return GetSteps(number * 3 + 1, ++stepCount);
     }
 }
